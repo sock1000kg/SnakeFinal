@@ -92,8 +92,13 @@ void TextItem::displayText(SDL_Renderer* renderer, int x, int y) {
         destRect.y = y;
     }
 
-    SDL_RenderCopy(renderer, this->texture, nullptr, &destRect);
-    SDL_Log("Text displayed: %s, Position: (%d, %d)", this->text.c_str(), destRect.x, destRect.y);
+    if (this->texture) {
+        SDL_RenderCopy(renderer, this->texture, nullptr, &destRect);
+        SDL_Log("Text displayed: %s, Position: (%d, %d)", this->text.c_str(), destRect.x, destRect.y);
+    }
+    else {
+        SDL_Log("Text texture is null, cannot display text: %s", this->text.c_str());
+    }
 }
 
 void TextItem::clearText() {
