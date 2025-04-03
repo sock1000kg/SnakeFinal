@@ -154,7 +154,7 @@ void Game::setupStage () {
             apple.w = HEAD_SIZE;
             apple.h = HEAD_SIZE;
 
-            if (apple.y < 50) { // Restrict spawning on the text level
+            if (apple.y < 50) { // Restrict spawning on the top level
                 validPositionAp = false;
                 continue;
             }
