@@ -1,6 +1,7 @@
 #define SDL_MAIN_HANDLED
 
 #include "Snake.h"
+#include "GameStates.h"
 #include "Defs.h"
 #include <iostream>
 
@@ -25,7 +26,7 @@ int main() {
 	game.setupStage();
 
 	//Start screen
-	game.waitForStart();
+	GameStates::waitForStart(game);
 
 	//Background music
 	sounds.setVolume(70, nullptr, sounds.bgMusic);

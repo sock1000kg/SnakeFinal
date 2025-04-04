@@ -28,12 +28,12 @@ struct Game {
     std::vector<SDL_Rect> obstacles;
 	SDL_Rect megaphone = { 20, 20, HEAD_SIZE, HEAD_SIZE };
 
-    //Game state
+    //Game variables
     bool running = true, ended = false, music = true;
 
 	int direction = STOP, lastDirection = STOP; //Movement
 
-	int size = INITIAL_SIZE, applesEaten = 0, stage = 1, deathCount = 0; //Game variables
+	int size = INITIAL_SIZE, applesEaten = 0, stage = 1, deathCount = 0;
 
 	int appleCount = INIT_APPLE_COUNT; //Apples per stage
 
@@ -61,13 +61,6 @@ struct Game {
     void handleMovement();
 	void frameCapping();
     void cleanup();
-
-    //Game states
-    void renderStartScreen();
-    void waitForStart();
-    void renderEndScreen();
-    void endGame();
-    void stageDisplay();
 };
 
 

@@ -1,4 +1,5 @@
 #include "Snake.h"
+#include "GameStates.h"
 #include <cstdlib>
 
 
@@ -63,14 +64,14 @@ void Game::run(){
         frameStart = SDL_GetTicks();
         checkInput();
         if (ended) {
-            endGame();
+            GameStates::endGame(*this);
         }
         else {
             if (stage <= MAX_STAGE) {
                 handleMovement();
                 handleCollisions();
 
-                stageDisplay();
+                GameStates::stageDisplay(*this);
             }
             else ended = true;
         }
@@ -283,100 +284,6 @@ void Game::handleMovement() {
     if (head.x >= SCREEN_WIDTH) head.x = 0;             // Wrap right to left
     if (head.y < 0) head.y = SCREEN_HEIGHT - HEAD_SIZE;   // Wrap top to bottom
     if (head.y >= SCREEN_HEIGHT) head.y = 0;              // Wrap bottom to top
-}
-
-//START SCREEN
-void Game::renderStartScreen() {
-    graphics.changeBackground("image\\background.jpg");
-    graphics.clearScene();
-    graphics.renderScene();
-
-    texts.PressArrowKeysToStart.displayText(graphics.renderer);
-
-    graphics.presentScene();
-}
-void Game::waitForStart() {
-    bool waitingForInput = true;
-    renderStartScreen();
-
-    while (waitingForInput) {
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) { 
-                cleanup();
-                exit(0); 
-            }
-            if (event.type == SDL_KEYDOWN) {
-                if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_RIGHT) {
-					texts.PressArrowKeysToStart.clearText();
-					graphics.changeBackground("image\\grass.png");
-                    waitingForInput = false;
-                }
-            }
-            if (event.type == SDL_MOUSEBUTTONDOWN) {
-                int mouseX, mouseY;
-                SDL_GetMouseState(&mouseX, &mouseY);
-                if (isClickOnSnakeFace(mouseX, mouseY)) {
-                    sounds.playSound(sounds.yay, -1, 0);
-                }
-            }
-        }
-    }
-}
-
-
-//END GAME SCREEN
-void Game::renderEndScreen() {
-    graphics.changeBackground("image\\background.jpg");
-	graphics.clearScene();
-    graphics.renderScene();
-
-    // Create the death count text
-    std::string deathCountStr = "Deaths: " + std::to_string(deathCount);
-    texts.CountText.createText(graphics.renderer, texts.fontStage, white, deathCountStr, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 150, 1);
-
-    texts.YouWin.displayText(graphics.renderer);
-	texts.PressRToRestart.displayText(graphics.renderer);
-    texts.CountText.displayText(graphics.renderer);
-    graphics.presentScene();
-}
-void Game::endGame() {
-    // Yay sound
-    sounds.playSound(sounds.yay, -1, 0);
-    renderEndScreen();
-    while(ended) {
-		checkInput();
-	}
-}
-
-void Game::stageDisplay() {
-    graphics.clearScene();
-    // Keep printing head forward
-    snake.push_front(head);
-
-    // Pop the tail off snake
-    while (snake.size() > size) {
-        snake.pop_back();
-    }
-
-	graphics.renderScene();
-
-    // Draw Body
-    SDL_SetRenderDrawColor(graphics.renderer, 255, 255, 255, 255);
-    for (const auto& segment : snake) {
-        SDL_RenderFillRect(graphics.renderer, &segment);
-    }
-
-    // Draw Apples
-    for (const auto& apple : apples) {
-        graphics.drawApple(apple);
-    }
-
-    // Draw Obstacles
-    for (const auto& obstacle : obstacles) {
-        graphics.drawObstacle(obstacle);
-    }
-
-	graphics.presentScene();
 }
 
 //FRAME CAPPING (Currently 60 fps)

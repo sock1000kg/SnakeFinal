@@ -160,6 +160,7 @@ SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Fonts.cpp" />
+    <ClCompile Include="GameStates.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Snake.cpp" />
@@ -168,6 +169,7 @@ SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
   <ItemGroup>
     <ClInclude Include="Defs.h" />
     <ClInclude Include="Fonts.h" />
+    <ClInclude Include="GameStates.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="SDL_Wrapper.h" />
     <ClInclude Include="Snake.h" />
