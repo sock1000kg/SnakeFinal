@@ -2,9 +2,9 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "Graphics.h"
-#include "Fonts.h"
-#include "Sound.h"
+#include "Rendering/Graphics.h"
+#include "Rendering/Fonts.h"
+#include "Rendering/Sound.h"
 #include "Defs.h"
 #include <vector>
 #include <algorithm>
@@ -26,7 +26,6 @@ struct Game {
     //Apples and obstacles container
     std::vector <SDL_Rect> apples;
     std::vector<SDL_Rect> obstacles;
-	SDL_Rect megaphone = { 20, 20, HEAD_SIZE, HEAD_SIZE };
 
     //Game variables
     bool running = true, ended = false, music = true;

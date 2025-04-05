@@ -1,4 +1,4 @@
-#include "Sound.h"
+#include "Rendering/Sound.h"
 
 Sounds::Sounds() : eatSound(nullptr), dieSound(nullptr), yay(nullptr), bgMusic(nullptr), volume(MIX_MAX_VOLUME/2){}
 
@@ -17,16 +17,16 @@ void Sounds::logErrorAndExit(const char* msg, const char* error) {
 
 void Sounds::init() {
     initMIX();
-    eatSound = Mix_LoadWAV("sound\\eatsound.wav");
+    eatSound = Mix_LoadWAV("Assets\\sound\\eatsound.wav");
     if (!eatSound) logErrorAndExit("Load_eatSound_error", Mix_GetError());
 
-    dieSound = Mix_LoadWAV("sound\\diesound.wav");
+    dieSound = Mix_LoadWAV("Assets\\sound\\diesound.wav");
     if (!dieSound) logErrorAndExit("Load_dieSound_error", Mix_GetError());
 
-    yay = Mix_LoadWAV("sound\\yay.wav");
+    yay = Mix_LoadWAV("Assets\\sound\\yay.wav");
     if (!yay) logErrorAndExit("Load_yay_error", Mix_GetError());
 
-    bgMusic = Mix_LoadMUS("sound\\background.mp3");
+    bgMusic = Mix_LoadMUS("Assets\\sound\\background.mp3");
     if (!bgMusic) logErrorAndExit("Load_music_error", Mix_GetError());
 
     SDL_Log("Sound initialized successfully!!");

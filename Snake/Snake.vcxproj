@@ -18,6 +18,23 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\Game\GameStates.cpp" />
+    <ClCompile Include="src\Game\Snake.cpp" />
+    <ClCompile Include="src\Rendering\Fonts.cpp" />
+    <ClCompile Include="src\Rendering\Graphics.cpp" />
+    <ClCompile Include="src\Rendering\Sound.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Game\Defs.h" />
+    <ClInclude Include="include\Game\GameStates.h" />
+    <ClInclude Include="include\Game\Snake.h" />
+    <ClInclude Include="include\Rendering\Fonts.h" />
+    <ClInclude Include="include\Rendering\Graphics.h" />
+    <ClInclude Include="include\Rendering\SDL_Wrapper.h" />
+    <ClInclude Include="include\Rendering\Sound.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -92,6 +109,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -110,6 +128,7 @@ SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,6 +147,7 @@ SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,6 +166,7 @@ SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -158,26 +179,6 @@ SDL2_mixer.lib;
 SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Fonts.cpp" />
-    <ClCompile Include="GameStates.cpp" />
-    <ClCompile Include="Graphics.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Snake.cpp" />
-    <ClCompile Include="Sound.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Defs.h" />
-    <ClInclude Include="Fonts.h" />
-    <ClInclude Include="GameStates.h" />
-    <ClInclude Include="Graphics.h" />
-    <ClInclude Include="SDL_Wrapper.h" />
-    <ClInclude Include="Snake.h" />
-    <ClInclude Include="Sound.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="highscore.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

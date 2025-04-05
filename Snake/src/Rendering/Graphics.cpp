@@ -1,6 +1,6 @@
 // Graphics.cpp
-#include "Graphics.h"
-#include "Defs.h"
+#include "Rendering/Graphics.h"
+#include "Game/Defs.h"
 
 SDL_Color white = { 255, 255, 255, 255 };
 SDL_Color black = { 0, 0, 0, 255 };
@@ -29,19 +29,19 @@ void Graphics::init() {
     initSDL();
 
     //Load background
-    SDL_Surface* surface = IMG_Load("image\\background.jpg");
+    SDL_Surface* surface = IMG_Load("Assets\\image\\background.jpg");
     backgroundTexture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
     if (!backgroundTexture) logErrorAndExit("Load_background_error", IMG_GetError());
 
     // Load apple texture
-    surface = IMG_Load("image\\apple.png");
+    surface = IMG_Load("Assets\\image\\apple.png");
     appleTexture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
     if (!appleTexture) logErrorAndExit("Load_apple_error", IMG_GetError());
 
 	// Load obstacle texture 
-	surface = IMG_Load("image\\tile.png"); 
+	surface = IMG_Load("Assets\\image\\tile.png"); 
 	obstacleTexture = SDL_CreateTextureFromSurface(renderer, surface);
 	SDL_FreeSurface(surface);
 	if (!obstacleTexture) logErrorAndExit("Load_obstacle_error", IMG_GetError());

@@ -1,8 +1,8 @@
 #define SDL_MAIN_HANDLED
 
-#include "Snake.h"
-#include "GameStates.h"
-#include "Defs.h"
+#include "Game/Snake.h"
+#include "Game/GameStates.h"
+#include "Game/Defs.h"
 #include <iostream>
 
 SDL_Event event;

@@ -2,8 +2,8 @@
 #ifndef GAMESTATES_H
 #define GAMESTATES_H
 
-#include "Graphics.h"
-#include "Fonts.h"
+#include "Rendering/Graphics.h"
+#include "Rendering/Fonts.h"
 #include "Defs.h"
 #include <SDL.h>
 

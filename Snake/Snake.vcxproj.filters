@@ -1,63 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{ca82fa4f-8781-4bb8-8532-ca4f8838c967}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game">
+      <UniqueIdentifier>{8d918005-6341-4500-8a61-768ce4b9247f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Rendering">
+      <UniqueIdentifier>{d8b64876-5f70-4ed8-b511-9aa0b8f92000}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="include\Game">
+      <UniqueIdentifier>{eacccbae-7628-49bd-863c-5c3d136749b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Rendering">
+      <UniqueIdentifier>{fa43cb57-10ac-4d56-8b82-bb5737392b66}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\Rendering\Fonts.cpp">
+      <Filter>src\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Snake.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Rendering\Graphics.cpp">
+      <Filter>src\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Sound.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Rendering\Sound.cpp">
+      <Filter>src\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Fonts.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Game\GameStates.cpp">
+      <Filter>src\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStates.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Game\Snake.cpp">
+      <Filter>src\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Snake.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\Game\Defs.h">
+      <Filter>include\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\Game\GameStates.h">
+      <Filter>include\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Fonts.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\Game\Snake.h">
+      <Filter>include\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Sound.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\Rendering\Fonts.h">
+      <Filter>include\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="SDL_Wrapper.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\Rendering\Graphics.h">
+      <Filter>include\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Defs.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\Rendering\SDL_Wrapper.h">
+      <Filter>include\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="GameStates.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\Rendering\Sound.h">
+      <Filter>include\Rendering</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="highscore.txt" />
   </ItemGroup>
 </Project>

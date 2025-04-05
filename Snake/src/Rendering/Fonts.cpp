@@ -1,6 +1,6 @@
-#include "Fonts.h"
-#include "Snake.h"
-#include "Defs.h"
+#include "Rendering/Fonts.h"
+#include "Game/Snake.h"
+#include "Game/Defs.h"
 
 //INTIALIZATION
 Fonts::Fonts() {
@@ -26,8 +26,8 @@ void Fonts::logErrorAndExit(const char* msg, const char* error) {
 
 void Fonts::init(SDL_Renderer* renderer) {
     initTTF();
-    fontEndGame = TTF_OpenFont("font\\SavoryCurry.ttf", 100); // For titles
-    fontStage = TTF_OpenFont("font\\SavoryCurry.ttf", 20);    // For normal texts
+    fontEndGame = TTF_OpenFont("Assets\\font\\SavoryCurry.ttf", 100); // For titles
+    fontStage = TTF_OpenFont("Assets\\font\\SavoryCurry.ttf", 20);    // For normal texts
     if (!fontEndGame || !fontStage) logErrorAndExit("Load_fonts_error", TTF_GetError());
 
 

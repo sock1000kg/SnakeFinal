@@ -1,5 +1,5 @@
-#include "Snake.h"
-#include "GameStates.h"
+#include "Game/Snake.h"
+#include "Game/GameStates.h"
 #include <cstdlib>
 
 
@@ -96,7 +96,7 @@ void Game::restartGame() {
     size = INITIAL_SIZE;
     ended = false;
 
-    graphics.changeBackground("image\\grass.png");
+    graphics.changeBackground("Assets\\image\\grass.png");
 
     setupStage();
 }

@@ -1,9 +1,9 @@
-#include "GameStates.h"
-#include "Snake.h"
+#include "Game/GameStates.h"
+#include "Game/Snake.h"
 
 //START SCREEN
 void GameStates::renderStartScreen(Game& game) {
-    game.graphics.changeBackground("image\\background.jpg");
+    game.graphics.changeBackground("Assets\\image\\background.jpg");
     game.graphics.clearScene();
     game.graphics.renderScene();
 
@@ -24,7 +24,7 @@ void GameStates::waitForStart(Game& game) {
             if (event.type == SDL_KEYDOWN) {
                 if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_RIGHT) {
                     game.texts.PressArrowKeysToStart.clearText();
-                    game.graphics.changeBackground("image\\grass.png");
+                    game.graphics.changeBackground("Assets\\image\\grass.png");
                     waitingForInput = false;
                 }
             }
@@ -42,7 +42,7 @@ void GameStates::waitForStart(Game& game) {
 
 //END GAME SCREEN
 void GameStates::renderEndScreen(Game& game) {
-    game.graphics.changeBackground("image\\background.jpg");
+    game.graphics.changeBackground("Assets\\image\\background.jpg");
     game.graphics.clearScene();
     game.graphics.renderScene();
 
