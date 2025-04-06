@@ -108,8 +108,8 @@ void Game::setupStage () {
 
     if (stage > MAX_STAGE) return;
 
-    appleCount = INIT_APPLE_COUNT + (stage - 1) * 6;  // Apples per stage
-    int obstacleCount = (stage - 1) * 10;   // Obstacles per stage
+    appleCount = INIT_APPLE_COUNT + (stage - 1) * 12;  // Apples per stage
+    int obstacleCount = (stage - 1) * 20;   // Obstacles per stage
 
     // Obstacle generation
     for (int i = 0; i < obstacleCount; i++) {
@@ -123,13 +123,13 @@ void Game::setupStage () {
             obstacle.w = HEAD_SIZE;
             obstacle.h = HEAD_SIZE;
 
-            // Restrict spawning on the text level
+            // Restrict spawning on the top level
             if (obstacle.y < 50) {
                 validPositionOb = false;
                 continue;
             }
 
-            for (const auto& snake_segment : snake) { //Check if overlap with snake
+            for (const auto& snake_segment : snake) { // Check if overlap with snake
                 if (isOverlapping(obstacle, snake_segment)) {
                     validPositionOb = false;
                     break;
@@ -177,7 +177,7 @@ void Game::setupStage () {
 			}
 
 
-            //Check if overlap with snake
+            // Check if overlap with snake
             for (const auto& snake_segment : snake) { 
                 if (isOverlapping(apple, snake_segment)) {
                     validPositionAp = false;
@@ -221,22 +221,24 @@ void Game::death() {
 }
 
 //GENERATION OF APPLES AND COLLISIONS
-bool Game::isOverlapping(const SDL_Rect& a, const SDL_Rect& b) { // To prevent overlap in generation
+bool Game::isOverlapping(const SDL_Rect& a, const SDL_Rect& b) { // To prevent overlap in generation and checking collision
     return (SDL_HasIntersection(&a, &b));
 }
 
 //HANDLING COLLISIONS
 void Game::handleCollisions() {
     // Apple Collision
-    apples.erase(std::remove_if(apples.begin(), apples.end(), [&](auto& apple) {
-        if (SDL_HasIntersection(&head, &apple)) {
+    for (auto it = apples.begin(); it != apples.end(); ) {
+        if (SDL_HasIntersection(&head, &*it)) {
             sounds.playSound(sounds.eatSound);
             size += HEAD_SIZE / 4;
             applesEaten++;
-            return true; // Remove the apple from the vector
+			it = apples.erase(it); // Erase returns the next iterator
         }
-        return false;
-        }), apples.end());
+        else {
+            ++it;
+        }
+    }
 
     // Advance stage
     if (applesEaten == appleCount) {
@@ -254,7 +256,7 @@ void Game::handleCollisions() {
         }
     });
 
-    //Collision detection with body
+    // Collision detection with body
     std::for_each(snake.begin(), snake.end(), [&](auto& snake_segment) {
         if (direction && head.x == snake_segment.x && head.y == snake_segment.y) {
             death();
