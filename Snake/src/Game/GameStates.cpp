@@ -92,5 +92,7 @@ void GameStates::stageDisplay(Game& game) {
         game.graphics.drawObstacle(obstacle);
     }
 
+	game.texts.getCountText().displayText(game.graphics.getRenderer());
+
     game.graphics.presentScene();
 }

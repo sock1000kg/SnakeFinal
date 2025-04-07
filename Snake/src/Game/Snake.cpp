@@ -106,6 +106,9 @@ void Game::setupStage() {
     obstacles.clear();
     direction = STOP;
 
+    std::string stageCountStr = "Stage: " + std::to_string(stage) + "/" + std::to_string(MAX_STAGE);
+    texts.getCountText().createText(graphics.getRenderer(), texts.getFontStage(), white, stageCountStr, SCREEN_WIDTH / 2, 20, 1);
+
     if (stage > MAX_STAGE) return;
 
     appleCount = INIT_APPLE_COUNT + (stage - 1) * (INIT_APPLE_COUNT);  // Apples per stage
@@ -218,8 +221,6 @@ void Game::death() {
     applesEaten = 0; // Reset apple count for the stage
     deathCount++;
 
-    std::string deathCountStr = "Deaths: " + std::to_string(deathCount);
-    texts.getCountText().createText(graphics.getRenderer(), texts.getFontStage(), white, deathCountStr, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 150, 1);
     setupStage(); // Restart current stage
 }
 
