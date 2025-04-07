@@ -7,7 +7,7 @@ void GameStates::renderStartScreen(Game& game) {
     game.graphics.clearScene();
     game.graphics.renderScene();
 
-    game.texts.PressArrowKeysToStart.displayText(game.graphics.renderer);
+    game.texts.getPressArrowKeysToStart().displayText(game.graphics.getRenderer());
 
     game.graphics.presentScene();
 }
@@ -23,7 +23,7 @@ void GameStates::waitForStart(Game& game) {
             }
             if (event.type == SDL_KEYDOWN) {
                 if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_RIGHT) {
-                    game.texts.PressArrowKeysToStart.clearText();
+                    game.texts.getPressArrowKeysToStart().clearText();
                     game.graphics.changeBackground("Assets\\image\\grass.png");
                     waitingForInput = false;
                 }
@@ -32,7 +32,7 @@ void GameStates::waitForStart(Game& game) {
                 int mouseX, mouseY;
                 SDL_GetMouseState(&mouseX, &mouseY);
                 if (game.isClickOnSnakeFace(mouseX, mouseY)) {
-                    game.sounds.playSound(game.sounds.yay, -1, 0);
+                    game.sounds.playSound(game.sounds.getYay(), -1, 0);
                 }
             }
         }
@@ -48,16 +48,16 @@ void GameStates::renderEndScreen(Game& game) {
 
     // Create the death count text
     std::string deathCountStr = "Deaths: " + std::to_string(game.deathCount);
-    game.texts.CountText.createText(game.graphics.renderer, game.texts.fontStage, white, deathCountStr, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 150, 1);
+    game.texts.getCountText().createText(game.graphics.getRenderer(), game.texts.getFontStage(), white, deathCountStr, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 150, 1);
 
-    game.texts.YouWin.displayText(game.graphics.renderer);
-    game.texts.PressRToRestart.displayText(game.graphics.renderer);
-    game.texts.CountText.displayText(game.graphics.renderer);
+    game.texts.getYouWin().displayText(game.graphics.getRenderer());
+    game.texts.getPressRToRestart().displayText(game.graphics.getRenderer());
+    game.texts.getCountText().displayText(game.graphics.getRenderer());
     game.graphics.presentScene();
 }
 void GameStates::endGame(Game& game) {
     // Yay sound
-    game.sounds.playSound(game.sounds.yay, -1, 0);
+    game.sounds.playSound(game.sounds.getYay(), -1, 0);
     renderEndScreen(game);
     while (game.ended) {
         game.checkInput();
@@ -77,9 +77,9 @@ void GameStates::stageDisplay(Game& game) {
     game.graphics.renderScene();
 
     // Draw Body
-    SDL_SetRenderDrawColor(game.graphics.renderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(game.graphics.getRenderer(), 255, 255, 255, 255);
     for (const auto& segment : game.snake) {
-        SDL_RenderFillRect(game.graphics.renderer, &segment);
+        SDL_RenderFillRect(game.graphics.getRenderer(), &segment);
     }
 
     // Draw Apples

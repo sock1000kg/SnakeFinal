@@ -79,7 +79,6 @@ void Graphics::drawApple(const SDL_Rect& rect) {
         Rect.y = rect.y - (Rect.h - rect.h) / 2; 
 
         SDL_RenderCopy(renderer, appleTexture, nullptr, &Rect);
-        SDL_Log("Apple drawn at position: (%d, %d) with size: (%d, %d)", Rect.x, Rect.y, Rect.w, Rect.h);
     }
     else {
         SDL_Log("Apple texture is null, cannot draw apple");
@@ -99,7 +98,6 @@ void Graphics::drawObstacle(const SDL_Rect& rect) {
         Rect.y = rect.y - (Rect.h - rect.h) / 2;
 
 		SDL_RenderCopy(renderer, obstacleTexture, nullptr, &Rect);
-		SDL_Log("Obstacle drawn at position: (%d, %d) with size: (%d, %d)", Rect.x, Rect.y, Rect.w, Rect.h);
 	}
 	else {
 		SDL_Log("Obstacle texture is null, cannot draw obstacle");
@@ -116,14 +114,12 @@ void Graphics::changeBackground(const char* filename) {
 void Graphics::renderScene() {
     if (backgroundTexture) {
         SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
-        SDL_Log("Background display");
     }
 }
 
 void Graphics::clearScene() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); //Set black background
     SDL_RenderClear(renderer);
-    SDL_Log("Renderer cleared");
 }
 
 void Graphics::presentScene() {
@@ -135,20 +131,24 @@ void Graphics::quit() {
     if (backgroundTexture) {
         SDL_DestroyTexture(backgroundTexture);
         backgroundTexture = nullptr;
+        SDL_Log("backgroundTexture destroyed");
     }
     if (appleTexture) {
         SDL_DestroyTexture(appleTexture);
         appleTexture = nullptr;
+		SDL_Log("appleTexture destroyed");
     }
 
     IMG_Quit();
     if (renderer) {
         SDL_DestroyRenderer(renderer);
         renderer = nullptr;
+		SDL_Log("renderer destroyed");
     }
     if (window) {
         SDL_DestroyWindow(window);
         window = nullptr;
+		SDL_Log("window destroyed");
     }
     SDL_Quit();
 }

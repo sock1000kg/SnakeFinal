@@ -65,8 +65,8 @@ void TextItem::createText(SDL_Renderer* renderer, TTF_Font* font, SDL_Color colo
     }
 
     SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-    SDL_FreeSurface(textSurface);
     if (!textTexture) {
+        SDL_FreeSurface(textSurface);
         SDL_Log("Unable to create text texture: %s", SDL_GetError());
         return;
     }
@@ -82,7 +82,8 @@ void TextItem::createText(SDL_Renderer* renderer, TTF_Font* font, SDL_Color colo
         this->rect.y = y - textSurface->h / 2;
     }
 
-    SDL_Log("Text created: %s, Position: (%d, %d)", text.c_str(), x, y);
+    SDL_FreeSurface(textSurface);
+    SDL_Log("Text created: %s, Position: (%d, %d)", this->text.c_str(), this->rect.x, this->rect.y);
 }
 
 void TextItem::displayText(SDL_Renderer* renderer, int x, int y) {
@@ -106,9 +107,9 @@ void TextItem::clearText() {
         SDL_DestroyTexture(this->texture);
         this->texture = nullptr;
     }
+    SDL_Log("Text cleared: %s", this->text.c_str());
     this->text.clear();
     this->rect = { 0, 0, 0, 0 };
-    SDL_Log("Text cleared");
 }
 
 //FONTS HANDLING

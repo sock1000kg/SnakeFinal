@@ -82,18 +82,22 @@ void Sounds::quitMIX() {
     if (eatSound) {
         Mix_FreeChunk(eatSound);
         eatSound = nullptr;
+        SDL_Log("eatSound destroyed");
     }
     if (dieSound) {
         Mix_FreeChunk(dieSound);
         dieSound = nullptr;
+		SDL_Log("dieSound destroyed");
     }
     if (yay) {
         Mix_FreeChunk(yay);
         yay = nullptr;
+		SDL_Log("yay destroyed");
     }
     if (bgMusic) {
         Mix_FreeMusic(bgMusic);
         bgMusic = nullptr;
+		SDL_Log("bgMusic destroyed");
     }
     Mix_CloseAudio();
     Mix_Quit();

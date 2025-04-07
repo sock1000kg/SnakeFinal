@@ -5,10 +5,12 @@
 #include "SDL_wrapper.h"
 
 struct Sounds {
+private:
     Mix_Chunk* eatSound, * dieSound, * yay;
     Mix_Music* bgMusic;
     int volume;
 
+public:
     Sounds();
     ~Sounds();
 
@@ -21,6 +23,11 @@ struct Sounds {
     void stopMusic();
     void playSound(Mix_Chunk* sound, int channel = -1, int loops = 0);
     void quitMIX();
+
+	Mix_Chunk* getEatSound() const { return eatSound; }
+	Mix_Chunk* getDieSound() const { return dieSound; }
+	Mix_Chunk* getYay() const { return yay; }
+	Mix_Music* getBgMusic() const { return bgMusic; }
 };
 
 #endif // _SOUNDS__H

@@ -30,11 +30,11 @@ struct Game {
     //Game variables
     bool running = true, ended = false, music = true;
 
-	int direction = STOP, lastDirection = STOP; //Movement
+    int direction = STOP, lastDirection = STOP; //Movement
 
-	int size = INITIAL_SIZE, applesEaten = 0, stage = 1, deathCount = 0;
+    int size = INITIAL_SIZE, applesEaten = 0, stage = 1, deathCount = 0;
 
-	int appleCount = INIT_APPLE_COUNT; //Apples per stage
+    int appleCount = INIT_APPLE_COUNT; //Apples per stage
 
     int frameCounter = 0;
     Uint32 frameStart, frameTime;
@@ -49,16 +49,16 @@ struct Game {
     //Inputs
     void checkInput();
     bool isClickOnSnakeFace(int mouseX, int mouseY);
-    
+
     //Game logic
-	void run();
+    void run();
     void restartGame();
     void setupStage();
     void death();
     bool isOverlapping(const SDL_Rect& a, const SDL_Rect& b);
     void handleCollisions();
     void handleMovement();
-	void frameCapping();
+    void frameCapping();
     void cleanup();
 };
 

@@ -14,14 +14,14 @@ Fonts texts;
 int main() {
 	graphics.init();
 	sounds.init();
-	texts.init(graphics.renderer);
+	texts.init(graphics.getRenderer());
 
 	Game game(graphics, sounds, texts);
 
 	//Setting volume of sounds
-	sounds.setVolume(MIX_MAX_VOLUME / 4, sounds.eatSound);
-	sounds.setVolume(MIX_MAX_VOLUME / 4, sounds.dieSound);
-	sounds.setVolume(20, sounds.yay);
+	sounds.setVolume(MIX_MAX_VOLUME / 4, sounds.getEatSound());
+	sounds.setVolume(MIX_MAX_VOLUME / 4, sounds.getDieSound());
+	sounds.setVolume(20, sounds.getYay());
 
 	game.setupStage();
 
@@ -29,7 +29,7 @@ int main() {
 	GameStates::waitForStart(game);
 
 	//Background music
-	sounds.setVolume(70, nullptr, sounds.bgMusic);
+	sounds.setVolume(70, nullptr, sounds.getBgMusic());
 	sounds.playMusic();
 
 	//GAME LOOP

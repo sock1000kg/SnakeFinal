@@ -7,6 +7,7 @@
 #include <string>
 
 struct Graphics {
+private:
     SDL_Renderer* renderer;
     SDL_Window* window;
     SDL_Texture* backgroundTexture;
@@ -16,6 +17,7 @@ struct Graphics {
 
     const char* WINDOW_TITLE = "HAHAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHAHHAHAHA";
 
+public:
     Graphics();
     ~Graphics();
 
@@ -31,6 +33,8 @@ struct Graphics {
     void clearScene();
     void presentScene();
     void quit();
+
+	SDL_Renderer* getRenderer() const { return renderer; }
 };
 
 #endif // _GRAPHICS__H

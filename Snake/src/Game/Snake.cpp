@@ -6,7 +6,7 @@
 Game::Game(Graphics& g, Sounds& s, Fonts& f)
     : graphics(g), sounds(s), texts(f)  // Initialize references
 {
-	deathCount = 0;
+    deathCount = 0;
     restartGame();  // Initialize all game state
 }
 
@@ -17,9 +17,9 @@ Game::~Game() = default;
 void Game::checkInput() {
     // Check for input
     while (SDL_PollEvent(&event)) {
-        if (event.type == SDL_QUIT) { 
-            restartGame(); 
-            running = false; 
+        if (event.type == SDL_QUIT) {
+            restartGame();
+            running = false;
         }
 
         if (event.type == SDL_KEYDOWN) {
@@ -29,7 +29,7 @@ void Game::checkInput() {
                 if (event.key.keysym.sym == SDLK_LEFT && lastDirection != RIGHT) { direction = LEFT; }
                 if (event.key.keysym.sym == SDLK_RIGHT && lastDirection != LEFT) { direction = RIGHT; }
             }
-			if (event.key.keysym.sym == SDLK_r) { restartGame(); break; } //Restart game with "r"
+            if (event.key.keysym.sym == SDLK_r) { restartGame(); break; } //Restart game with "r"
             if (event.key.keysym.sym == SDLK_m) { //Toggle music on and off with "m"
                 if (music) {
                     sounds.stopMusic();
@@ -46,7 +46,7 @@ void Game::checkInput() {
                 int mouseX, mouseY;
                 SDL_GetMouseState(&mouseX, &mouseY);
                 if (isClickOnSnakeFace(mouseX, mouseY)) {
-                    sounds.playSound(sounds.yay, -1, 0); //PLAY YAY SOUND WHEN CLICK ON THE SNAKE
+                    sounds.playSound(sounds.getYay(), -1, 0); //PLAY YAY SOUND WHEN CLICK ON THE SNAKE
                 }
             }
         }
@@ -59,7 +59,7 @@ bool Game::isClickOnSnakeFace(int mouseX, int mouseY) {
     return SDL_PointInRect(&mousePoint, &clickArea);
 }
 
-void Game::run(){
+void Game::run() {
     while (running) {
         frameStart = SDL_GetTicks();
         checkInput();
@@ -101,15 +101,15 @@ void Game::restartGame() {
     setupStage();
 }
 
-void Game::setupStage () {
+void Game::setupStage() {
     apples.clear();
     obstacles.clear();
     direction = STOP;
 
     if (stage > MAX_STAGE) return;
 
-    appleCount = INIT_APPLE_COUNT + (stage - 1) * 12;  // Apples per stage
-    int obstacleCount = (stage - 1) * 20;   // Obstacles per stage
+    appleCount = INIT_APPLE_COUNT + (stage - 1) * (INIT_APPLE_COUNT);  // Apples per stage
+    int obstacleCount = (stage - 1) * (INIT_APPLE_COUNT*2);   // Obstacles per stage
 
     // Obstacle generation
     for (int i = 0; i < obstacleCount; i++) {
@@ -135,11 +135,11 @@ void Game::setupStage () {
                     break;
                 }
                 if (isOverlapping(obstacle, head)) {
-					validPositionOb = false;
-					break;
+                    validPositionOb = false;
+                    break;
                 }
             }
-        } while (!validPositionOb); 
+        } while (!validPositionOb);
 
         obstacles.push_back(obstacle); // Push only after validation
     }
@@ -161,24 +161,24 @@ void Game::setupStage () {
             }
 
             // Check if it overlaps with any obstacles
-            for (const auto& obstacle : obstacles) { 
+            for (const auto& obstacle : obstacles) {
                 if (isOverlapping(apple, obstacle)) {
                     validPositionAp = false;
                     break;
                 }
             }
 
-			// Check if it overlaps with any other apples
-			for (const auto& other_apple : apples) {
-				if (isOverlapping(apple, other_apple)) {
-					validPositionAp = false;
-					break;
-				}
-			}
+            // Check if it overlaps with any other apples
+            for (const auto& other_apple : apples) {
+                if (isOverlapping(apple, other_apple)) {
+                    validPositionAp = false;
+                    break;
+                }
+            }
 
 
             // Check if overlap with snake
-            for (const auto& snake_segment : snake) { 
+            for (const auto& snake_segment : snake) {
                 if (isOverlapping(apple, snake_segment)) {
                     validPositionAp = false;
                     break;
@@ -213,10 +213,13 @@ void Game::setupStage () {
 
 //DEATH
 void Game::death() {
-    sounds.playSound(sounds.dieSound);
+    sounds.playSound(sounds.getDieSound());
     size = INITIAL_SIZE;  // Reset size on collision
     applesEaten = 0; // Reset apple count for the stage
     deathCount++;
+
+    std::string deathCountStr = "Deaths: " + std::to_string(deathCount);
+    texts.getCountText().createText(graphics.getRenderer(), texts.getFontStage(), white, deathCountStr, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 150, 1);
     setupStage(); // Restart current stage
 }
 
@@ -230,10 +233,10 @@ void Game::handleCollisions() {
     // Apple Collision
     for (auto it = apples.begin(); it != apples.end(); ) {
         if (SDL_HasIntersection(&head, &*it)) {
-            sounds.playSound(sounds.eatSound);
+            sounds.playSound(sounds.getEatSound());
             size += HEAD_SIZE / 4;
             applesEaten++;
-			it = apples.erase(it); // Erase returns the next iterator
+            it = apples.erase(it); // Erase returns the next iterator
         }
         else {
             ++it;
@@ -254,14 +257,14 @@ void Game::handleCollisions() {
         if (SDL_HasIntersection(&head, &obstacle)) {
             death();
         }
-    });
+        });
 
     // Collision detection with body
     std::for_each(snake.begin(), snake.end(), [&](auto& snake_segment) {
         if (direction && head.x == snake_segment.x && head.y == snake_segment.y) {
             death();
         }
-     });
+        });
 }
 
 void Game::handleMovement() {
