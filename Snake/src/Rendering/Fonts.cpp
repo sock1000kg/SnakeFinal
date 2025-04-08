@@ -9,7 +9,8 @@ Fonts::Fonts() {
     YouWin = { nullptr, "", {0, 0, 0, 0} };
     PressRToRestart = { nullptr, "", {0, 0, 0, 0} };
     PressArrowKeysToStart = { nullptr, "", {0, 0, 0, 0} };
-	CountText = { nullptr, "", {0, 0, 0, 0} };
+	DeathCountText = { nullptr, "", {0, 0, 0, 0} };
+	StageCountText = { nullptr, "", {0, 0, 0, 0} };
 }
 Fonts::~Fonts() {
     clearAllTexts();
@@ -34,7 +35,7 @@ void Fonts::init(SDL_Renderer* renderer) {
     PressArrowKeysToStart.createText(renderer, fontStage, white, "Press Arrow Keys to Start", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1);
     YouWin.createText(renderer, fontEndGame, white, "You Win!", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 1);
     PressRToRestart.createText(renderer, fontStage, white, "Press R to Restart", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 100, 2);
-	CountText.createText(renderer, fontStage, white, "Deaths: 0", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 150, 1);
+	DeathCountText.createText(renderer, fontStage, white, "Deaths: 0", 20, 20, 0);
 
     SDL_Log("Fonts initialized successfully!!!");
 }
@@ -126,10 +127,14 @@ void Fonts::clearAllTexts() {
         SDL_DestroyTexture(PressArrowKeysToStart.texture);
         SDL_Log("PressArrowKeysToStart destroyed");
     }
-    if (CountText.texture) {
-        SDL_DestroyTexture(CountText.texture);
-        SDL_Log("CountText destroyed");
+    if (DeathCountText.texture) {
+        SDL_DestroyTexture(DeathCountText.texture);
+        SDL_Log("DeathCountText destroyed");
     }
+	if (StageCountText.texture) {
+		SDL_DestroyTexture(StageCountText.texture);
+		SDL_Log("StageCountText destroyed");
+	}
 }
 
 void Fonts::quitTTF() {

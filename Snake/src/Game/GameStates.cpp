@@ -48,11 +48,11 @@ void GameStates::renderEndScreen(Game& game) {
 
     // Create the death count text
     std::string deathCountStr = "Deaths: " + std::to_string(game.deathCount);
-    game.texts.getCountText().createText(game.graphics.getRenderer(), game.texts.getFontStage(), white, deathCountStr, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 150, 1);
+    game.texts.getDeathCountText().createText(game.graphics.getRenderer(), game.texts.getFontStage(), white, deathCountStr, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 150, 1);
 
     game.texts.getYouWin().displayText(game.graphics.getRenderer());
     game.texts.getPressRToRestart().displayText(game.graphics.getRenderer());
-    game.texts.getCountText().displayText(game.graphics.getRenderer());
+    game.texts.getDeathCountText().displayText(game.graphics.getRenderer());
     game.graphics.presentScene();
 }
 void GameStates::endGame(Game& game) {
@@ -77,7 +77,7 @@ void GameStates::stageDisplay(Game& game) {
     game.graphics.renderScene();
 
     // Draw Body
-    SDL_SetRenderDrawColor(game.graphics.getRenderer(), 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(game.graphics.getRenderer(), 173, 100, 255, 255);
     for (const auto& segment : game.snake) {
         SDL_RenderFillRect(game.graphics.getRenderer(), &segment);
     }
@@ -92,7 +92,9 @@ void GameStates::stageDisplay(Game& game) {
         game.graphics.drawObstacle(obstacle);
     }
 
-	game.texts.getCountText().displayText(game.graphics.getRenderer());
+	game.texts.getStageCountText().displayText(game.graphics.getRenderer());
+
+    game.texts.getDeathCountText().displayText(game.graphics.getRenderer());
 
     game.graphics.presentScene();
 }

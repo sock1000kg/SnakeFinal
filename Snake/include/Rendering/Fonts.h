@@ -24,7 +24,8 @@ private:
     TextItem YouWin;
 	TextItem PressRToRestart;
 	TextItem PressArrowKeysToStart;
-    TextItem CountText;
+    TextItem StageCountText;
+    TextItem DeathCountText;
 
 public:
     Fonts();
@@ -40,7 +41,8 @@ public:
     TextItem getYouWin() const { return YouWin; }
     TextItem getPressRToRestart() const { return PressRToRestart; }
     TextItem getPressArrowKeysToStart() const { return PressArrowKeysToStart; }
-    TextItem& getCountText() { return CountText; }
+    TextItem& getDeathCountText() { return DeathCountText; }
+	TextItem& getStageCountText() { return StageCountText; }
 	TTF_Font* getFontEndGame() const { return fontEndGame; }
 	TTF_Font* getFontStage() const { return fontStage; }
 };

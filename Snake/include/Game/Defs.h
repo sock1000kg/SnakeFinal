@@ -4,8 +4,8 @@
 
 //GAME VARIABLES
 const int HEAD_SIZE = 20;
-const int SCREEN_WIDTH = 1000;
-const int SCREEN_HEIGHT = 760;
+const int SCREEN_WIDTH = 1024;
+const int SCREEN_HEIGHT = 768;
 const int INITIAL_SIZE = 2;
 const int MAX_STAGE = 3;
 const int INIT_APPLE_COUNT = 5;

@@ -4,7 +4,7 @@
 
 
 Game::Game(Graphics& g, Sounds& s, Fonts& f)
-    : graphics(g), sounds(s), texts(f)  // Initialize references
+    : graphics(g), sounds(s), texts(f)  // Initialize references for game rendering
 {
     deathCount = 0;
     restartGame();  // Initialize all game state
@@ -29,8 +29,8 @@ void Game::checkInput() {
                 if (event.key.keysym.sym == SDLK_LEFT && lastDirection != RIGHT) { direction = LEFT; }
                 if (event.key.keysym.sym == SDLK_RIGHT && lastDirection != LEFT) { direction = RIGHT; }
             }
-            if (event.key.keysym.sym == SDLK_r) { restartGame(); break; } //Restart game with "r"
-            if (event.key.keysym.sym == SDLK_m) { //Toggle music on and off with "m"
+            if (event.key.keysym.sym == SDLK_r) { restartGame(); break; } // Restart game with "r"
+            if (event.key.keysym.sym == SDLK_m) { // Toggle music on and off with "m"
                 if (music) {
                     sounds.stopMusic();
                     music = false;
@@ -46,7 +46,7 @@ void Game::checkInput() {
                 int mouseX, mouseY;
                 SDL_GetMouseState(&mouseX, &mouseY);
                 if (isClickOnSnakeFace(mouseX, mouseY)) {
-                    sounds.playSound(sounds.getYay(), -1, 0); //PLAY YAY SOUND WHEN CLICK ON THE SNAKE
+                    sounds.playSound(sounds.getYay(), -1, 0); //PLAY YAY SOUND WHEN CLICK ON THE SNAKE HAHAHAHAHHAHHAHA
                 }
             }
         }
@@ -106,10 +106,14 @@ void Game::setupStage() {
     obstacles.clear();
     direction = STOP;
 
-    std::string stageCountStr = "Stage: " + std::to_string(stage) + "/" + std::to_string(MAX_STAGE);
-    texts.getCountText().createText(graphics.getRenderer(), texts.getFontStage(), white, stageCountStr, SCREEN_WIDTH / 2, 20, 1);
-
     if (stage > MAX_STAGE) return;
+
+    // Update texts
+    std::string stageCountStr = "Stage: " + std::to_string(stage) + "/" + std::to_string(MAX_STAGE);
+    texts.getStageCountText().createText(graphics.getRenderer(), texts.getFontStage(), white, stageCountStr, SCREEN_WIDTH - 125, 20, 0);
+
+    std::string deathCountStr = "Deaths: " + std::to_string(deathCount);
+    texts.getDeathCountText().createText(graphics.getRenderer(), texts.getFontStage(), white, deathCountStr, 20, 20, 0);
 
     appleCount = INIT_APPLE_COUNT + (stage - 1) * (INIT_APPLE_COUNT);  // Apples per stage
     int obstacleCount = (stage - 1) * (INIT_APPLE_COUNT*2);   // Obstacles per stage
