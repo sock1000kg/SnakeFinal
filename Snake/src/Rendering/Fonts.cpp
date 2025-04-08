@@ -52,7 +52,7 @@ void TextItem::createText(SDL_Renderer* renderer, TTF_Font* font, SDL_Color colo
     }
 
     // If the new text is the same as an existing text, do nothing
-    if (this->text == text) {
+    if (this->text == text && this->rect.x == x && this->rect.y == y) {
         SDL_Log("Text is the same: %s", text.c_str());
         return;
     }
@@ -99,7 +99,7 @@ void TextItem::displayText(SDL_Renderer* renderer, int x, int y) {
         SDL_Log("Text displayed: %s, Position: (%d, %d)", this->text.c_str(), destRect.x, destRect.y);
     }
     else {
-        SDL_Log("Text texture is null, cannot display text: %s", this->text.c_str());
+        SDL_Log("Text texture does not exist, cannot display text: %s", this->text.c_str());
     }
 }
 
@@ -117,22 +117,27 @@ void TextItem::clearText() {
 void Fonts::clearAllTexts() {
     if (YouWin.texture) {
         SDL_DestroyTexture(YouWin.texture);
+		YouWin.texture = nullptr;
         SDL_Log("YouWin destroyed");
     }
     if (PressRToRestart.texture) {
         SDL_DestroyTexture(PressRToRestart.texture);
+		PressRToRestart.texture = nullptr;
         SDL_Log("PressRToRestart destroyed");
     }
     if (PressArrowKeysToStart.texture) {
         SDL_DestroyTexture(PressArrowKeysToStart.texture);
+		PressArrowKeysToStart.texture = nullptr;
         SDL_Log("PressArrowKeysToStart destroyed");
     }
     if (DeathCountText.texture) {
         SDL_DestroyTexture(DeathCountText.texture);
+		DeathCountText.texture = nullptr;
         SDL_Log("DeathCountText destroyed");
     }
 	if (StageCountText.texture) {
 		SDL_DestroyTexture(StageCountText.texture);
+		StageCountText.texture = nullptr;
 		SDL_Log("StageCountText destroyed");
 	}
 }

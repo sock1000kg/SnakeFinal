@@ -32,8 +32,10 @@ int main() {
 	sounds.setVolume(70, nullptr, sounds.getBgMusic());
 	sounds.playMusic();
 
-	//GAME LOOP
+	//Game loop
 	game.run();
+
+	//Cleanup
 	game.cleanup();
 	return 0;
 }

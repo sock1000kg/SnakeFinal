@@ -2,15 +2,13 @@
 #include "Game/GameStates.h"
 #include <cstdlib>
 
-
+//INITIALIZATION
 Game::Game(Graphics& g, Sounds& s, Fonts& f)
     : graphics(g), sounds(s), texts(f)  // Initialize references for game rendering
 {
     deathCount = 0;
-    restartGame();  // Initialize all game state
+    restartGame();  // Initialize all game states
 }
-
-// Destructor
 Game::~Game() = default;
 
 //HANDLING INPUTS
@@ -136,7 +134,8 @@ void Game::setupStage() {
                 continue;
             }
 
-            for (const auto& snake_segment : snake) { // Check if overlap with snake
+            // Check if overlap with snake
+            for (const auto& snake_segment : snake) {
                 if (isOverlapping(obstacle, snake_segment)) {
                     validPositionOb = false;
                     break;
@@ -229,7 +228,7 @@ void Game::death() {
 }
 
 //GENERATION OF APPLES AND COLLISIONS
-bool Game::isOverlapping(const SDL_Rect& a, const SDL_Rect& b) { // To prevent overlap in generation and checking collision
+bool Game::isOverlapping(const SDL_Rect& a, const SDL_Rect& b) { // To prevent overlap in setupStage and checking collision
     return (SDL_HasIntersection(&a, &b));
 }
 

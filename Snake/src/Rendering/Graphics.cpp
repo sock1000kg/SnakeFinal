@@ -133,13 +133,22 @@ void Graphics::quit() {
         backgroundTexture = nullptr;
         SDL_Log("backgroundTexture destroyed");
     }
+    if (grass) {
+        SDL_DestroyTexture(grass);
+        grass = nullptr;
+        SDL_Log("grass destroyed");
+    }
     if (appleTexture) {
         SDL_DestroyTexture(appleTexture);
         appleTexture = nullptr;
 		SDL_Log("appleTexture destroyed");
     }
+    if (obstacleTexture) {
+        SDL_DestroyTexture(obstacleTexture);
+        obstacleTexture = nullptr;
+        SDL_Log("obstacleTexture destroyed");
+    }
 
-    IMG_Quit();
     if (renderer) {
         SDL_DestroyRenderer(renderer);
         renderer = nullptr;
@@ -150,5 +159,7 @@ void Graphics::quit() {
         window = nullptr;
 		SDL_Log("window destroyed");
     }
+
+    IMG_Quit();
     SDL_Quit();
 }

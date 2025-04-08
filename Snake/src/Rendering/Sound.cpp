@@ -57,7 +57,7 @@ void Sounds::setVolume(int newVolume, Mix_Chunk* sound, Mix_Music* track) {
 
 void Sounds::playMusic(int loops) {
     if (!bgMusic) {
-        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "No background music exist.");
+        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "No background music exist: %s", Mix_GetError());
         return;
     }
     if (Mix_PlayingMusic() == 0) {
@@ -71,7 +71,7 @@ void Sounds::stopMusic() {
 
 void Sounds::playSound(Mix_Chunk* sound, int channel, int loops) {
     if (!sound) {
-        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "No sound effect exist.");
+        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "No sound effect exist: %s", Mix_GetError());
         return;
     }
     Mix_PlayChannel(channel, sound, loops);
