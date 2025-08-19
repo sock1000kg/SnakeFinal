@@ -1,5 +1,5 @@
 ## Giới thiệu
-  SnakeFinal là một game rắn 2D chơi theo màn làm từ C++ và SDL. Nhiệm vụ chính là giúp rắn ăn hết táo và đi đến màn tiếp theo cho đến khi qua được hết các màn. Vì rắn sẽ chết nếu đâm vào tường nên người chơi cần phải cố gắng chết ít nhất có thể, nếu không người ta nhìn vào sẽ nói "Skill issue" và cười vào mặt bạn đó 😱. Nếu khó khăn quá thì luôn có thể bắt đầu lại hoặc nhận sự cổ vũ từ rắn 🐍 (click chuột vào rắn khi thấy rắn cười).
+  SnakeFinal là một game rắn 2D chơi theo màn làm từ C++ và SDL2. Nhiệm vụ chính là giúp rắn ăn hết táo và đi đến màn tiếp theo cho đến khi qua được hết các màn. Vì rắn sẽ chết nếu đâm vào tường nên người chơi cần phải cố gắng chết ít nhất có thể, nếu không người ta nhìn vào sẽ nói "Skill issue" và cười vào mặt bạn đó 😱. Nếu khó khăn quá thì luôn có thể bắt đầu lại hoặc nhận sự cổ vũ từ rắn 🐍 (click chuột vào rắn khi thấy rắn cười).
 
 ## Cách chơi
 - W,A,S,D - đổi hướng di chuyển rắn
