@@ -19,7 +19,7 @@ Nếu khó khăn quá thì luôn có thể bắt đầu lại hoặc nhận sự
 ## Ghi chú
 Đây là dự án đầu tiên mình thử nghiệm với C++/SDL2 và cũng là lúc mới bắt đầu học lập trình.  
 Dự án được tạo như một bài tập, nên mình không thêm công cụ build đa nền tảng (như CMake).  
-Nếu muốn chạy, bạn sẽ cần tự cấu hình SDL2 trong Visual Studio.
+Nếu muốn chạy, bạn sẽ cần tự cài đặt cấu hình SDL2 trong Visual Studio.
 
 ## Một vài screenshot 
 ![image](https://github.com/user-attachments/assets/031ecc46-569b-4643-9502-6cd1a6623e32) 
